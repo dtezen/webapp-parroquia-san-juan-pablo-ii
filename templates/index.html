@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listado de Integrantes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Listado de Integrantes</h2>
+    <form method="get">
+        <input type="text" name="search" placeholder="Buscar..." value="{{ search or '' }}">
+        <button type="submit">Buscar</button>
+        <a href="{{ url_for('form') }}"><button type="button">Nuevo</button></a>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Celular</th>
+                <th>Sector</th>
+                <th>Grupos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for miembro in miembros %}
+            <tr>
+                <td>{{ miembro.nombre }}</td>
+                <td>{{ miembro.celular }}</td>
+                <td>{{ miembro.sector }}</td>
+                <td>{{ miembro.grupo }}</td>
+                <td>
+                    <!-- Aquí podrías poner editar más adelante -->
+                    <a href="{{ url_for('eliminar', id=miembro.id) }}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

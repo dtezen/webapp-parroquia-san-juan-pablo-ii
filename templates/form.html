@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nuevo Integrante</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Registrar Integrante</h2>
+    <form method="post">
+        <label>Nombre completo</label>
+        <input type="text" name="nombre" required>
+        
+        <label>Fecha de nacimiento</label>
+        <input type="date" name="fecha" required>
+        
+        <label>Número de celular</label>
+        <input type="text" name="celular">
+        
+        <label>Dirección</label>
+        <textarea name="direccion"></textarea>
+        
+        <label>Profesión u oficio</label>
+        <input type="text" name="profesion">
+        
+        <label>Habilidades</label>
+        <input type="text" name="habilidades">
+        
+        <label>Sector o filial</label>
+        <select name="sector">
+            <option value="Sede">Sede</option>
+            <option value="Santa Isabel de Hungría">Santa Isabel de Hungría</option>
+            <option value="Santa Clara de Asís">Santa Clara de Asís</option>
+        </select>
+        
+        <label>Grupo, comunidad o pastoral</label>
+        {% for grupo in grupos %}
+            <input type="checkbox" name="grupo" value="{{ grupo }}"> {{ grupo }}<br>
+        {% endfor %}
+        
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+</body>
+</html>
